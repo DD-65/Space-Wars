@@ -789,7 +789,7 @@ TreibstoffZustand=tkinter.Label(game,text=treibstofftext)
 TreibstoffZustand.grid(row=8,column=2,padx=5, columnspan=2)
 # ---------------------
 global locationImg
-locationImg=tkinter.PhotoImage(file=".assets/fotos/ship.gif")
+locationImg=tkinter.PhotoImage(file="./assets/fotos/ship.gif")
 global fotolabel
 fotolabel=tkinter.Label(image=locationImg)
 fotolabel.grid(row=1,column=0,rowspan=8)
