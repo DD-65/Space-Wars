@@ -7,4 +7,5 @@ The general GUI structrure is based on a [assignment](https://informatik.bildung
 
 I know that the game could have a lot of additional features and that I could code simplier and prettier, but I'm still learning.
 
-
+### Installation
+Download the repo as .zip, unpack it and `cd` into the folder. Run the game with `python3 game.py`.
