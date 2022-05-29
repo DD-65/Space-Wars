@@ -189,7 +189,7 @@ def NeuesSpiel():
     Laderaum = 100
     treibstoff=100
     global locationImg
-    locationImg=tkinter.PhotoImage(file="./fotos/ship.gif")
+    locationImg=tkinter.PhotoImage(file="./assets/fotos/ship.gif")
     EingabeMenge.delete("0","end")
     EingabeMenge.insert("end","0")
     sternsystem=sonnensystem
