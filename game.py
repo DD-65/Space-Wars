@@ -77,11 +77,11 @@ class Objekt:
         self.stdsystem=stdsystem
 # Objektdefinition
 #reihenfolge:name,preis,preismax,preismin,geladen,sonnensystem (in welchem das objekt kaufbar ist)
-eisen=Objekt("Eisen",100,1350,30,sonnensystem)
-h2o=Objekt("H2O",750,1700,200,sonnensystem)
-co2=Objekt("CO2",600,2000,200,sonnensystem)
-titan=Objekt("Titan",380,1800,80,sonnensystem)
-lithium=Objekt("Lithium",1000,7500,400,sonnensystem)
+eisen=Objekt("Eisen",100,1350,30,0,sonnensystem)
+h2o=Objekt("H2O",750,1700,200,0,sonnensystem)
+co2=Objekt("CO2",600,2000,200,0,sonnensystem)
+titan=Objekt("Titan",380,1800,80,0,sonnensystem)
+lithium=Objekt("Lithium",1000,7500,400,0,sonnensystem)
 treibstoffobj=Objekt("Treibstoff (10% Tankfüllung)",3500,3500,3500,0,"all")
 tankup=Objekt("Tank-Upgrade",10000,10000,10000,0,"all")
 ladeup=Objekt("Laderaum-Vergrößerung",10000,1000,1000,0,"all")
