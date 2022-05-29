@@ -1,5 +1,5 @@
 # Space-Wars
-https://img.shields.io/badge/Maintained%3F-yes!-brightgreen
+![alt text](https://img.shields.io/badge/Maintained%3F-yes!-brightgreen)
 
 A simple space-themed trading simulator aka my first (bigger) python project.
 
