@@ -1,7 +1,7 @@
 # Space-Wars
 ![alt text](https://img.shields.io/badge/Maintained%3F-yes!-brightgreen) ![alt text](https://img.shields.io/badge/ask%20me-anything-red) ![alt text](https://img.shields.io/badge/version-v1.0-informational)
 
-A simple space-themed trading simulator aka my first (bigger) python project.
+A simple space-themed trading simulator aka my first python project.
 
 The general GUI structrure is based on a [assignment](https://informatik.bildung-rp.de/fileadmin/user_upload/informatik.bildung-rp.de/Fortbildung/FB_SpieleProgrammieren/SPIELE-171017-Jakobs_Modul1SpiceWars.pdf) from the German ministry of Education, but i've changed both the GUI and the gameplay a lot from the assignment.
 
