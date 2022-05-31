@@ -67,27 +67,6 @@ sternsystem=sonnensystem # AKTUELLES STERNSYSTEM
 global Ort # Startplaneten für jedes sternsystem festlegen
 Ort=sternsystem.startplanet
 
-class Objekt:
-    def __init__(self, name, preis, preismax, preismin, geladen, stdsystem):
-        self.name=name
-        self.preis=preis
-        self.preismax=preismax
-        self.preismin=preismin
-        self.geladen=geladen
-        self.stdsystem=stdsystem
-# Objektdefinition
-#reihenfolge:name,preis,preismax,preismin,geladen,sonnensystem (in welchem das objekt kaufbar ist)
-eisen=Objekt("Eisen",100,1350,30,0,sonnensystem)
-h2o=Objekt("H2O",750,1700,200,0,sonnensystem)
-co2=Objekt("CO2",600,2000,200,0,sonnensystem)
-titan=Objekt("Titan",380,1800,80,0,sonnensystem)
-lithium=Objekt("Lithium",1000,7500,400,0,sonnensystem)
-treibstoffobj=Objekt("Treibstoff (10% Tankfüllung)",3500,3500,3500,0,"all")
-tankup=Objekt("Tank-Upgrade",10000,10000,10000,0,"all")
-ladeup=Objekt("Laderaum-Vergrößerung",10000,1000,1000,0,"all")
-testing=Objekt("Testing",0,0,0,0,"all")
-
-
 # TREIBSTOFFF
 treibstofftext="Treibstoff:\n[##########]"
 def Treibstoffaktualisieren():
@@ -282,7 +261,6 @@ def kaufen():
     Treibstoffaktualisieren()
     ladeneu=Laderaum
     geldneu=Geld
-    #print("nummer:",Nummer,"item:",Mineralien[Nummer],"geladen:",EigeneLadung[Nummer])
     # logs
     # vermeiden dass bei drücken des buttons ohne kauf ein logeintrag angelegt wird (gleiches bei verkaufen())
     if (geldalt<geldneu):
@@ -472,9 +450,7 @@ def weiterfliegen():
         entfernung=entfernungalt-entfernungneu
     else:
         entfernung=entfernungneu-entfernungalt
-    print("entfernung:",entfernung)
     abzug=round(((entfernung/1500)*100))
-    print("Abzug:",abzug)
     treibstoff=treibstoff-(treibstoff*(abzug/100))
     if treibstoff<0:
         nichtanzeigen=True
@@ -626,7 +602,7 @@ def hilfe():
     \nUnten links findest du eine weitere Liste mit deinen Möglichkeiten zum weiterfliegen.
     Du kannst durch Klicken auswählen und mit dem Button 'Weiterfliegen' genau dies tun.\nMit dem Button 'Neues Spiel' startest du neu,
     und mit dem Button 'Score hochladen' kannst du deinen Score (dein gesammeltes Geld) mit den 10 besten Spielern vergleichen und hochladen.
-    \nDanke fürs Spielen und viel Spaß!" 
+    \nDanke fürs Spielen und viel Spaß!
     """
     erklaerung=tkinter.Label(Hilfe,text=hilfetext)
     erklaerung.grid(row=1,column=1)
