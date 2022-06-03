@@ -9,12 +9,6 @@ game = tkinter.Tk()
 game.title("Space Wars")
 Geld = 10000 # STARTGELD DES SPIELERS
 Laderaum = 100 # FREIER LADERAUM IM SCHIFF DES SPIELERS (AM ANFANG)
-Mineralien = ["Eisen", "H20", "CO2", "Titan", "Lithium","Treibstoff (10% Tankfüllung)","Tank-Upgrade","Laderaum-Vergrößerung","Testing"] # ERWERBBARES IM SPIEL
-global aktKosten
-aktKosten = [100, 750, 600, 380 ,1000,3500, 10000, 10000,0] # STARTKOSTEN DER OBJEKTE (GEORDNET NACH LISTE "Mineralien")
-KostenMin = [30, 200 , 200 , 80, 400, 3500, 5000, 5000,0] # MINIMALKOSTEN DER OBJEKTE
-KostenMax = [1350, 1700 , 2000 , 1800, 7500, 3500, 11000, 11000,0] # MAXIMALKOSTEN
-EigeneLadung = [0,0,0,0,0,0,0,0,0] # GELADENE MENGE DER VERSCHIEDENEN OBJEKTE
 global reisen
 reisen=0 # ANZAHL DER REISEN VON PLANET ZU PLANET
 galaxienreisen=0 # ANZAHL DER REISEN ZWISCHEN GALAXIEN (WARPTOR)
@@ -37,18 +31,18 @@ class planet:
 
 #BEISPIEL:                     ENTFERNUNG   BEREISBAR T/F
 #BEISPIEL:   NAME  PLANETENSYSTEM    WARPTOR T/F    BILD
-sonne=planet("Sonne","Milchstraße",0,False,False,tkinter.PhotoImage(file="./assets/fotos/ship.gif"))
-erde=planet("Erde","Milchstraße",250,False,True,tkinter.PhotoImage(file="./assets/fotos/erde.gif"))
-mars=planet("Mars","Milchstraße",370,False,True,tkinter.PhotoImage(file="./assets/fotos/mars.gif"))
-venus=planet("Venus-Raumstation","Milchstraße",100,False,True,tkinter.PhotoImage(file="./assets/fotos/venus.gif"))
-uranus=planet("Uranus-Raumstation","Milchstraße",600,False,True,tkinter.PhotoImage(file="./assets/fotos/uranus.gif"))
-pluto=planet("Pluto","Milchstraße",1100,False,True,tkinter.PhotoImage(file="./assets/fotos/pluto.gif"))
-warptorS=planet("Warptor","Milchstraße",1000,True,True,tkinter.PhotoImage(file="./assets/fotos/warp.gif"))
+sonne=planet("Sonne","Milchstraße",0,False,False,tkinter.PhotoImage(file="./fotos/ship.gif"))
+erde=planet("Erde","Milchstraße",250,False,True,tkinter.PhotoImage(file="./fotos/erde.gif"))
+mars=planet("Mars","Milchstraße",370,False,True,tkinter.PhotoImage(file="./fotos/mars.gif"))
+venus=planet("Venus-Raumstation","Milchstraße",100,False,True,tkinter.PhotoImage(file="./fotos/venus.gif"))
+uranus=planet("Uranus-Raumstation","Milchstraße",600,False,True,tkinter.PhotoImage(file="./fotos/uranus.gif"))
+pluto=planet("Pluto","Milchstraße",1100,False,True,tkinter.PhotoImage(file="./fotos/pluto.gif"))
+warptorS=planet("Warptor","Milchstraße",1000,True,True,tkinter.PhotoImage(file="./fotos/warp.gif"))
 # PLANETEN VON ALPHA CENTAURI
-alphacentauria=planet("Alpha Centauri A (Stern)","Alpha Centauri",0,False,False,tkinter.PhotoImage(file="./assets/fotos/ship.gif"))
-alphacentauriab=planet("Alpha Centauri Ab","Alpha Centauri",150,False,True,tkinter.PhotoImage(file="./assets/fotos/ship.gif"))
-alphacentauribb=planet("Alpha Centauri Bb","Alpha Centauri",2580,False,True,tkinter.PhotoImage(file="./assets/fotos/ship.gif"))
-warptorA=planet("Warptor","Alpha Centauri",1000,True,True,tkinter.PhotoImage(file="./assets/fotos/warp.gif"))
+alphacentauria=planet("Alpha Centauri A (Stern)","Alpha Centauri",0,False,False,tkinter.PhotoImage(file="./fotos/ship.gif"))
+alphacentauriab=planet("Alpha Centauri Ab","Alpha Centauri",150,False,True,tkinter.PhotoImage(file="./fotos/ship.gif"))
+alphacentauribb=planet("Alpha Centauri Bb","Alpha Centauri",2580,False,True,tkinter.PhotoImage(file="./fotos/ship.gif"))
+warptorA=planet("Warptor","Alpha Centauri",1000,True,True,tkinter.PhotoImage(file="./fotos/warp.gif"))
 
 sPlaneten= [sonne,erde,mars,venus,uranus,pluto,warptorS] # PLANETEN DES SONNENSYSTEMS
 aPlaneten=[alphacentauria,alphacentauriab,alphacentauribb,warptorA] # PLANETEN UM ALPHA CENTAURI
@@ -67,19 +61,42 @@ sternsystem=sonnensystem # AKTUELLES STERNSYSTEM
 global Ort # Startplaneten für jedes sternsystem festlegen
 Ort=sternsystem.startplanet
 
+class Objekt:
+    def __init__(self, name, preis, preismax, preismin, geladen, stdsystem, verkauflich,kaufbar):
+        self.name=name
+        self.preis=preis
+        self.preismax=preismax
+        self.preismin=preismin
+        self.geladen=geladen
+        self.stdsystem=stdsystem
+        self.verkauflich=verkauflich
+        self.kaufbar=kaufbar
+
+# Objektdefinition
+#reihenfolge:name,preis,preismax,preismin,geladen,sonnensystem (in welchem das objekt kaufbar ist), verkauflich (ob das Objekt verkauft werden kann), kaufbar(ob das Objekt kaufbar ist)
+eisen=Objekt("Eisen",100,1350,30,0,sonnensystem,True,True)
+h2o=Objekt("H2O",750,1700,200,0,sonnensystem,True,True)
+co2=Objekt("CO2",600,2000,200,0,sonnensystem,True,True)
+titan=Objekt("Titan",380,1800,80,0,sonnensystem,True,True)
+lithium=Objekt("Lithium",1000,7500,400,0,sonnensystem,True,True)
+treibstoffobj=Objekt("Treibstoff (10% Tankfüllung)",3500,3500,3500,0,"all",False,True)
+tankup=Objekt("Tank-Upgrade",10000,10000,10000,0,"all",False,True)
+ladeup=Objekt("Laderaum-Vergrößerung",10000,1000,1000,0,"all",False,True)
+testing=Objekt("Testing",0,0,0,0,"all",False,False)
+objekte=[eisen,h2o,co2,titan,lithium,treibstoffobj,tankup,ladeup,testing]
+
 # TREIBSTOFFF
 treibstofftext="Treibstoff:\n[##########]"
 def Treibstoffaktualisieren():
     global treibstofftext
     global treibstoff
-    global EigeneLadung
     global treibstoffmax
     try:
-        geladenerT=EigeneLadung[5]
+        geladenerT=treibstoffobj.geladen
     except IndexError: # FALLS KEIN TREIBSTOFF GELADEN
         geladenerT=0
     treibstoff=treibstoff+(geladenerT*10)
-    EigeneLadung[5]=0
+    treibstoffobj.geladen=0
     treibstofftext="Treibstoff:\n"+"["
     treibstoff=int(treibstoff)
     for i in range(1,(treibstoff//10)+1): # PRO 10% DES TREIBSTOFFS EIN STRICH IN DER GUI
@@ -92,33 +109,25 @@ def Treibstoffaktualisieren():
     TreibstoffZustand["text"]=treibstofftext
 
 def DisplayAktualisieren():
-    global Mineralien
-    global aktKosten
-    global EigeneLadung
     global Geld
-    global Laderaum
-    ListeObjekte.delete("0","end")
-    ListeObjekte.insert("end", Mineralien[0] + "  " + str(aktKosten[0]))
-    ListeObjekte.insert("end", Mineralien[1] + "  " + str(aktKosten[1]))
-    ListeObjekte.insert("end", Mineralien[2] + "  " + str(aktKosten[2]))
-    ListeObjekte.insert("end", Mineralien[3] + "  " + str(aktKosten[3]))
-    ListeObjekte.insert("end", Mineralien[4] + "  " + str(aktKosten[4]))
-    ListeObjekte.insert("end", Mineralien[5] + "  " + str(aktKosten[5]))
-    ListeObjekte.insert("end", Mineralien[6] + "  " + str(aktKosten[6]))
-    ListeObjekte.insert("end", Mineralien[7] + "  " + str(aktKosten[7]))
+    global Laderaum, sternsystem
 
+    # OBJEKTE ANZEIGEN
+    ListeObjekte.delete("0","end")
+    for i in range(0,len(objekte)):
+        if (objekte[i].stdsystem=="all" or objekte[i].stdsystem==sternsystem) and objekte[i].kaufbar==True:
+            ListeObjekte.insert("end",objekte[i].name+ " "+ str(objekte[i].preis))
+    
+    # ladung anzeigen
     ListeLaderaum.delete("0","end")
     ListeLaderaum.insert("end", "Credits: " + str(Geld))
     ListeLaderaum.insert("end", "Platz im Laderaum: " + str(Laderaum))
     ListeLaderaum.insert("end", "------- Geladen:")
-    ListeLaderaum.insert("end", str(EigeneLadung[0]) + " Einheiten: " + str(Mineralien[0]))
-    ListeLaderaum.insert("end", str(EigeneLadung[1]) + " Einheiten: " + str(Mineralien[1]))
-    ListeLaderaum.insert("end", str(EigeneLadung[2]) + " Einheiten: " + str(Mineralien[2]))
-    ListeLaderaum.insert("end", str(EigeneLadung[3]) + " Einheiten: " + str(Mineralien[3]))
-    ListeLaderaum.insert("end", str(EigeneLadung[4]) + " Einheiten: " + str(Mineralien[4]))
-    #ListeLaderaum.insert("end", str(EigeneLadung[5]) + " Einheiten: " + str(Mineralien[5])) # ausgeblendet weil man den treibstoff nicht wieder verkaufen soll
-    #ListeLaderaum.insert("end", str(EigeneLadung[6]) + " Einheiten: " + str(Mineralien[6]))
-    #ListeLaderaum.insert("end", str(EigeneLadung[7]) + " Einheiten: " + str(Mineralien[7]))
+    for i in range(0, len(objekte)):
+        if (objekte[i].stdsystem=="all" or objekte[i].stdsystem==sternsystem) and objekte[i].verkauflich==True:
+            ListeLaderaum.insert("end",objekte[i].name+ ": "+ str(objekte[i].geladen)+" Einheiten")
+    
+    # orte anzeigen
     ListeOrte.delete("0","end")
     # Nur die planeten des jeweiligen sonnensystems in der gui anzeigen + indikator
     if sternsystem==sonnensystem:
@@ -155,20 +164,17 @@ def DisplayAktualisieren():
     fotolabel.configure(image=locationImg)
 
 def NeuesSpiel():
-    global aktKosten
-    global EigeneLadung
     global Geld
     global Laderaum
     global treibstoff
     global EingabeMenge
     global sternsystem
-    aktKosten = [100, 750, 600, 380 ,1000,3500, 10000, 10000,0]
-    EigeneLadung = [0,0,0,0,0,0,0,0,10000] # damit man was an kostenlosen (debug-)objekten zum verkaufen hat
+    testing.geladen=10000
     Geld = 100000
     Laderaum = 100
     treibstoff=100
     global locationImg
-    locationImg=tkinter.PhotoImage(file="./assets/fotos/ship.gif")
+    locationImg=tkinter.PhotoImage(file="./fotos/ship.gif")
     EingabeMenge.delete("0","end")
     EingabeMenge.insert("end","0")
     sternsystem=sonnensystem
@@ -180,6 +186,7 @@ def treibstoffkaufen(x):
     Treibstoffaktualisieren()
 
 def upgradekaufen(art,menge):
+    gekauftesobjekt=objekte[art]
     if art==6: # wenn Tank-upgrade ausgewählt wurde
         global treibstoffmax
         treibstoffmax=(treibstoffmax+20)*menge
@@ -193,19 +200,15 @@ def upgradekaufen(art,menge):
         elif Laderaum>=150 or menge>2:
             addition=5
         Laderaum=Laderaum+(addition)*menge
-    EigeneLadung[art]=EigeneLadung[art]-menge
+    gekauftesobjekt.geladen=gekauftesobjekt.geladen-menge
  
 def kaufen():
     global Geld
-    global aktKosten
-    global EigeneLadung
     global Laderaum
     global treibstoff
     global treibstoffmax
     ladealt=Laderaum
     geldalt=Geld
-    geladenalt=EigeneLadung
-    geladenneu=EigeneLadung
     try:
         Anzahl = int(EingabeMenge.get())
     except ValueError: # FALLS NICHTS EINGEGEBEN IST ( BEI ZU KAUFENDER MENGE)
@@ -217,6 +220,7 @@ def kaufen():
             Nummer = (int(ListeLaderaum.curselection()[0]))-3 # falls auf der falschen liste ausgewählt wurde
         except IndexError:
             Nummer=0
+    gekauftesobjekt=objekte[Nummer]
     # Falls "alles" und "hälfte" ausgewählt sind
     if cb.get()==1 and halb.get()==1:
         tkinter.messagebox.showinfo("- F E H L E R -","Du kannst nicht <alles> und <Die Hälfte> auswählen.")
@@ -224,64 +228,56 @@ def kaufen():
     elif cb.get()==1:
         EingabeMenge.delete("0","end")
         EingabeMenge.insert("end","0")
-        Anzahl=Geld//aktKosten[Nummer]
+        Anzahl=Geld//gekauftesobjekt.preis
         if Anzahl>Laderaum:
             Anzahl=Laderaum
     # Falls "die hälfte" ausgewählt ist
     elif halb.get()==1:
         EingabeMenge.delete("0","end")
         EingabeMenge.insert("end","0")
-        Anzahl=(Geld//aktKosten[Nummer])//2
+        Anzahl=(Geld//gekauftesobjekt.preis)//2
         if Anzahl>Laderaum:
             Anzahl=Laderaum
     # EIgener Kaufvorgang bei Treibstoff und Upgrades
     if Nummer>=5:
-        if (Geld >= aktKosten[Nummer]*Anzahl):
-            Geld = Geld - int(aktKosten[Nummer])*Anzahl
-            EigeneLadung[Nummer]=EigeneLadung[Nummer]+Anzahl
-            #EigeneLadung[Nummer] = EigeneLadung[Nummer]+Anzahl
-            #geladenneu=EigeneLadung
+        if (Geld >= gekauftesobjekt.preis*Anzahl):
+            Geld = Geld - int(gekauftesobjekt.preis)*Anzahl
+            gekauftesobjekt.geladen=gekauftesobjekt.geladen+Anzahl
             if Nummer==5:
                 if treibstoff==treibstoffmax:
-                    EigeneLadung[Nummer]=EigeneLadung[Nummer]-Anzahl
-                    Geld = Geld + int(aktKosten[Nummer])*Anzahl
+                    gekauftesobjekt.geladen=gekauftesobjekt.geladen-Anzahl
+                    Geld = Geld + int(gekauftesobjekt.preis)*Anzahl
                     tkinter.messagebox.showinfo("- F E H L E R -","Dein Tank ist bereits voll.\n")
             else:
                 upgradekaufen(Nummer,Anzahl)
         else:
             tkinter.messagebox.showinfo("- F E H L E R -","Du hast zu wenig Geld.\n")
     else:
-        if (Laderaum >= Anzahl) and (Geld >= aktKosten[Nummer]*Anzahl):
+        if (Laderaum >= Anzahl) and (Geld >= gekauftesobjekt.preis*Anzahl):
             Laderaum = Laderaum - Anzahl
-            Geld = Geld - int(aktKosten[Nummer])*Anzahl
-            EigeneLadung[Nummer] = EigeneLadung[Nummer]+Anzahl
-            geladenneu=EigeneLadung
+            Geld = Geld - int(gekauftesobjekt.preis)*Anzahl
+            gekauftesobjekt.geladen = gekauftesobjekt.geladen+Anzahl
         else:
             tkinter.messagebox.showinfo("- F E H L E R -","Du hast zu wenig Geld/platz im Laderaum.\n")
     Treibstoffaktualisieren()
-    ladeneu=Laderaum
     geldneu=Geld
     # logs
     # vermeiden dass bei drücken des buttons ohne kauf ein logeintrag angelegt wird (gleiches bei verkaufen())
-    if (geldalt<geldneu):
-        with open("logs.txt", "a+") as logs:
-            zeit=datetime.now()
-            ts=zeit.strftime("%d.%m;%H:%M")
-            writetext="KAUF\n"+" TS: "+ts+" Ladeplatz alt: "+str(ladealt)+" Ladeplatz neu: "+str(ladeneu)+ " Geld alt: "+str(geldalt)+" Geld neu: "+str(geldneu)+"\n"+"Geladen alt:\n"+"Eisen: "+str(geladenalt[1])+"\n"+"H2O: "+str(geladenalt[2])+"\n"+"CO2: "+str(geladenalt[3])+"\n"+"Titan: "+str(geladenalt[4])+"\n"+"Lithium: "+str(geladenalt[5])+"\n"+"Geladen neu:\n"+"Eisen: "+str(geladenneu[1])+"\n"+"H2O: "+str(geladenneu[2])+"\n"+"CO2: "+str(geladenneu[3])+"\n"+"Titan: "+str(geladenneu[4])+"\n"+"Lithium: "+str(geladenneu[5])+"\n"+"\n---------------"
-            logs.write(writetext)
-            logs.write("\n")
+    #if (geldalt<geldneu):
+    #    with open("logs.txt", "a+") as logs:
+    #        zeit=datetime.now()
+    #        ts=zeit.strftime("%d.%m;%H:%M")
+    #        writetext="KAUF\n"+" TS: "+ts+" Ladeplatz alt: "+str(ladealt)+" Ladeplatz neu: "+str(ladeneu)+ " Geld alt: "+str(geldalt)+" Geld neu: "+str(geldneu)+"\n"+"Geladen alt:\n"+"Eisen: "+str(geladenalt[1])+"\n"+"H2O: "+str(geladenalt[2])+"\n"+"CO2: "+str(geladenalt[3])+"\n"+"Titan: "+str(geladenalt[4])+"\n"+"Lithium: "+str(geladenalt[5])+"\n"+"Geladen neu:\n"+"Eisen: "+str(geladenneu[1])+"\n"+"H2O: "+str(geladenneu[2])+"\n"+"CO2: "+str(geladenneu[3])+"\n"+"Titan: "+str(geladenneu[4])+"\n"+"Lithium: "+str(geladenneu[5])+"\n"+"\n---------------"
+    #        logs.write(writetext)
+    #        logs.write("\n")
     DisplayAktualisieren()
 
 def verkaufen():
     global Geld
-    global aktKosten
-    global EigeneLadung
     global ListeLaderaum
     global Laderaum
     ladealt=Laderaum
     geldalt=Geld
-    geladenalt=EigeneLadung
-    geladenneu=EigeneLadung
     try:
         Anzahl = int(EingabeMenge.get())
     except ValueError: # FALLS NICHTS EINGEGEBEN IST (BEI DER ZU  VERKAUFENDEN MENGE)
@@ -296,6 +292,7 @@ def verkaufen():
             Nummer = int(ListeObjekte.curselection()[0]) # falls auf anderer liste ausgewählt wurde
         except IndexError:
             Nummer=8
+    verkauftesobjekt=objekte[Nummer]
     # Falls "alles" und "hälfte" ausgewählt sind
     if cb.get()==1 and halb.get()==1:
         tkinter.messagebox.showinfo("- F E H L E R -","Du kannst nicht <alles> und <Die Hälfte> auswählen.")
@@ -303,7 +300,7 @@ def verkaufen():
     elif cb.get()==1:
         EingabeMenge.delete("0","end")
         EingabeMenge.insert("end","0")
-        Anzahl=EigeneLadung[Nummer]
+        Anzahl=verkauftesobjekt.geladen
         #wenn "debug-"item ausgewählt ist (nummer 8) -> es soll nicht gekauft werden
         if Nummer==8:
             Anzahl=0
@@ -311,27 +308,26 @@ def verkaufen():
     elif halb.get()==1:
         EingabeMenge.delete("0","end")
         EingabeMenge.insert("end","0")
-        Anzahl=EigeneLadung[Nummer]//2
+        Anzahl=verkauftesobjekt.geladen//2
         # wenn debug-item ausgewählt ist, wird anzahl auf 0 gesetzt, damit man keine laderaumplätze ercheaten kann
         if Nummer==8:
             Anzahl=0
-    if (Anzahl <= EigeneLadung[Nummer]):
+    if (Anzahl <= verkauftesobjekt.geladen):
         Laderaum = Laderaum + Anzahl
-        Geld = Geld + int(aktKosten[Nummer])*Anzahl
-        EigeneLadung[Nummer] = EigeneLadung[Nummer] - Anzahl
-        geladenneu=EigeneLadung
+        Geld = Geld + int(verkauftesobjekt.preis)*Anzahl
+        verkauftesobjekt.geladen = verkauftesobjekt.geladen - Anzahl
     else:
         tkinter.messagebox.showinfo("- F E H L E R -","Du kannst nicht verkaufen, was du nicht besitzt.\n")
     geldneu=Geld
     ladeneu=Laderaum
     # logs
-    if (geladenalt[1]+geladenalt[2]+geladenalt[3]+geladenalt[4]+geladenalt[5])>(geladenneu[1]+geladenneu[2]+geladenneu[3]+geladenneu[4]+geladenneu[5]):
-        with open("logs.txt", "a+") as logs:
-            zeit=datetime.now()
-            ts=zeit.strftime("%d.%m;%H:%M")
-            writetext="KAUF\n"+" TS: "+ts+" Ladeplatz alt: "+str(ladealt)+" Ladeplatz neu: "+str(ladeneu)+ " Geld alt: "+str(geldalt)+" Geld neu: "+str(geldneu)+"\n"+"Geladen alt:\n"+"Eisen: "+str(geladenalt[1])+"\n"+"H2O: "+str(geladenalt[2])+"\n"+"CO2: "+str(geladenalt[3])+"\n"+"Titan: "+str(geladenalt[4])+"\n"+"Lithium: "+str(geladenalt[5])+"\n"+"Geladen neu:\n"+"Eisen: "+str(geladenneu[1])+"\n"+"H2O: "+str(geladenneu[2])+"\n"+"CO2: "+str(geladenneu[3])+"\n"+"Titan: "+str(geladenneu[4])+"\n"+"Lithium: "+str(geladenneu[5])+"\n"+"\n---------------"
-            logs.write(writetext)
-            logs.write("\n")
+    #if (geladenalt[1]+geladenalt[2]+geladenalt[3]+geladenalt[4]+geladenalt[5])>(geladenneu[1]+geladenneu[2]+geladenneu[3]+geladenneu[4]+geladenneu[5]):
+    #    with open("logs.txt", "a+") as logs:
+    #        zeit=datetime.now()
+    #        ts=zeit.strftime("%d.%m;%H:%M")
+    #        writetext="KAUF\n"+" TS: "+ts+" Ladeplatz alt: "+str(ladealt)+" Ladeplatz neu: "+str(ladeneu)+ " Geld alt: "+str(geldalt)+" Geld neu: "+str(geldneu)+"\n"+"Geladen alt:\n"+"Eisen: "+str(geladenalt[1])+"\n"+"H2O: "+str(geladenalt[2])+"\n"+"CO2: "+str(geladenalt[3])+"\n"+"Titan: "+str(geladenalt[4])+"\n"+"Lithium: "+str(geladenalt[5])+"\n"+"Geladen neu:\n"+"Eisen: "+str(geladenneu[1])+"\n"+"H2O: "+str(geladenneu[2])+"\n"+"CO2: "+str(geladenneu[3])+"\n"+"Titan: "+str(geladenneu[4])+"\n"+"Lithium: "+str(geladenneu[5])+"\n"+"\n---------------"
+    #        logs.write(writetext)
+    #        logs.write("\n")
     DisplayAktualisieren()
 
 def warptorcheck():
@@ -410,7 +406,6 @@ def weiterfliegen():
     global ListeOrte
     global aPlaneten
     global sPlaneten
-    global aktKosten
     global KostenMin
     global KostenMax
     global Geld
@@ -505,6 +500,11 @@ def weiterfliegen():
         wurmloch=True
 
 #-----------------------
+    global benutzbareobjekte
+    benutzbareobjekte=[]
+    for i in range(0,len(objekte)):
+        if objekte[i].verkauflich==True:
+            benutzbareobjekte.append(objekte[i])
     # Alles normal, puh
     if travelnormal==True:
         if zur==True and nichtanzeigen==False:
@@ -522,10 +522,10 @@ def weiterfliegen():
             tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zum " + ortname + " wirst du von Piraten überfallen!\nSie stehlen etwas von deinen Materialien und die Hälfte deines Geldes.")
         if zu==True:
             tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zu " + ortname + " wirst du von Piraten überfallen!\nSie stehlen etwas von deinen Materialien und die Hälfte deines Geldes.")
-        for i in range(0,len(EigeneLadung)):
+        for i in range(0,len(benutzbareobjekte)):
             chance=randint(1,100)
             if chance>50: # DAMIT NUR BEI CA. DER HÄLFTE DER MATERIALIEN ETWAS GESTOHLEN WIRD
-                EigeneLadung[i]=EigeneLadung[i]//2
+                benutzbareobjekte[i].geladen=benutzbareobjekte[i].geladen//2
         Geld=Geld//2
 
     # ALIENANGRIFF!!! Ne spaß, sie bemerken dich nicht mal. Also wirklich!
@@ -545,7 +545,7 @@ def weiterfliegen():
             tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zum " + ortname + " spüren deine Sensoren einenen Asteroiden auf! Du baust ihn ab und erhältst einige Materialien.")
         if zu==True:
             tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zu " + ortname + "  spüren deine Sensoren einenen Asteroiden auf! Du baust ihn ab und erhältst einige Materialien.")
-        for i in range(0,len(EigeneLadung)):
+        for i in range(0,len(benutzbareobjekte)):
             chance=randint(1,100)
             if chance<75: # Damit man bei vielen, aber nicht allen Materialien etwas bekommt
                 menge=randint(1,5)
@@ -553,7 +553,7 @@ def weiterfliegen():
                 if i>=5:
                     pass
                 else:
-                    EigeneLadung[i]=EigeneLadung[i]+menge
+                    benutzbareobjekte[i].geladen=benutzbareobjekte[i].geladen+menge
                     Laderaum=Laderaum-menge
 
     # WURMLOCH!!!!
@@ -568,8 +568,9 @@ def weiterfliegen():
 
     # NEUE KOSTEN FÜR ALLE OBJEKTE
     for i in range (5):
-        KostenDifferenz = KostenMax[i]-KostenMin[i]
-        aktKosten[i] =  randint(KostenMin[i],KostenMax[i])
+        #KostenDifferenz = KostenMax[i]-KostenMin[i]
+        for i in range(0, len(objekte)):
+            objekte[i].preis=randint(objekte[i].preismin,objekte[i].preismax)
     reisen=reisen+1
     DisplayAktualisieren()
     Treibstoffaktualisieren()
@@ -602,7 +603,7 @@ def hilfe():
     \nUnten links findest du eine weitere Liste mit deinen Möglichkeiten zum weiterfliegen.
     Du kannst durch Klicken auswählen und mit dem Button 'Weiterfliegen' genau dies tun.\nMit dem Button 'Neues Spiel' startest du neu,
     und mit dem Button 'Score hochladen' kannst du deinen Score (dein gesammeltes Geld) mit den 10 besten Spielern vergleichen und hochladen.
-    \nDanke fürs Spielen und viel Spaß!
+    \nDanke fürs Spielen und viel Spaß!" 
     """
     erklaerung=tkinter.Label(Hilfe,text=hilfetext)
     erklaerung.grid(row=1,column=1)
@@ -765,7 +766,7 @@ TreibstoffZustand=tkinter.Label(game,text=treibstofftext)
 TreibstoffZustand.grid(row=8,column=2,padx=5, columnspan=2)
 # ---------------------
 global locationImg
-locationImg=tkinter.PhotoImage(file="./assets/fotos/ship.gif")
+locationImg=tkinter.PhotoImage(file="./fotos/ship.gif")
 global fotolabel
 fotolabel=tkinter.Label(image=locationImg)
 fotolabel.grid(row=1,column=0,rowspan=8)
