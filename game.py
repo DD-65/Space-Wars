@@ -540,11 +540,11 @@ def weiterfliegen():
     # Alien+Sonnensystem=Asteroid
     elif alien==True and sternsystem==sonnensystem and nichtanzeigen==False:
         if zur==True:
-            tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zur " + ortname + " spüren deine Sensoren einenen Asteroiden auf! Du baust ihn ab und erhältst einige Materialien.")
+            tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zur " + ortname + " spüren deine Sensoren einen Asteroiden auf! Du baust ihn ab und erhältst einige Materialien.")
         if zum==True:
-            tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zum " + ortname + " spüren deine Sensoren einenen Asteroiden auf! Du baust ihn ab und erhältst einige Materialien.")
+            tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zum " + ortname + " spüren deine Sensoren einen Asteroiden auf! Du baust ihn ab und erhältst einige Materialien.")
         if zu==True:
-            tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zu " + ortname + "  spüren deine Sensoren einenen Asteroiden auf! Du baust ihn ab und erhältst einige Materialien.")
+            tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zu " + ortname + "  spüren deine Sensoren einen Asteroiden auf! Du baust ihn ab und erhältst einige Materialien.")
         for i in range(0,len(benutzbareobjekte)):
             chance=randint(1,100)
             if chance<75: # Damit man bei vielen, aber nicht allen Materialien etwas bekommt
