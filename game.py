@@ -74,16 +74,16 @@ class Objekt:
 
 # Objektdefinition
 #reihenfolge:name,preis,preismax,preismin,geladen,sonnensystem (in welchem das objekt kaufbar ist), verkauflich (ob das Objekt verkauft werden kann), kaufbar(ob das Objekt kaufbar ist)
-eisen=Objekt("Eisen",100,1350,30,0,sonnensystem,True,True)
+eisen=Objekt("Eisen",250,1350,100,0,sonnensystem,True,True)
 h2o=Objekt("H2O",750,1700,200,0,sonnensystem,True,True)
 co2=Objekt("CO2",600,2000,200,0,sonnensystem,True,True)
-titan=Objekt("Titan",380,1800,80,0,sonnensystem,True,True)
+titan=Objekt("Titan",380,1800,150,0,sonnensystem,True,True)
 lithium=Objekt("Lithium",1000,7500,400,0,sonnensystem,True,True)
 treibstoffobj=Objekt("Treibstoff (10% Tankfüllung)",3500,3500,3500,0,"all",False,True)
-tankup=Objekt("Tank-Upgrade",10000,10000,10000,0,"all",False,True)
-ladeup=Objekt("Laderaum-Vergrößerung",10000,1000,1000,0,"all",False,True)
+tankup=Objekt("Tank-Upgrade",100000,100000,100000,0,"all",False,True)
+ladeup=Objekt("Laderaum-Vergrößerung",100000,10000,10000,0,"all",False,True)
 testing=Objekt("Testing",0,0,0,0,"all",False,False)
-objekte=[eisen,h2o,co2,titan,lithium,treibstoffobj,tankup,ladeup,testing]
+objekte=objekte+[eisen,h2o,co2,titan,lithium,treibstoffobj,tankup,ladeup,testing]
 
 # TREIBSTOFFF
 treibstofftext="Treibstoff:\n[##########]"
