@@ -21,6 +21,7 @@ erstereise=True
 class planet:
     def __init__(self,name,sonnensystem,koord,warptor,bereisbar,foto):
         self.name=name
+        self.sonnensystem=sonnensystem
         self.koord=koord
         self.warptor=warptor
         self.bereisbar=bereisbar
@@ -29,24 +30,27 @@ class planet:
 # PLANETENDEFINITION
 # PLANETEN DES SONNENSYSTEMS
 
+planeten=[]
 #BEISPIEL:                     ENTFERNUNG   BEREISBAR T/F
 #BEISPIEL:   NAME  PLANETENSYSTEM    WARPTOR T/F    BILD
-sonne=planet("Sonne","Milchstraße",0,False,False,tkinter.PhotoImage(file="./assets/fotos/ship.gif"))
-erde=planet("Erde","Milchstraße",250,False,True,tkinter.PhotoImage(file="./assets/fotos/erde.gif"))
-mars=planet("Mars","Milchstraße",370,False,True,tkinter.PhotoImage(file="./assets/fotos/mars.gif"))
-venus=planet("Venus-Raumstation","Milchstraße",100,False,True,tkinter.PhotoImage(file="./assets/fotos/venus.gif"))
-uranus=planet("Uranus-Raumstation","Milchstraße",600,False,True,tkinter.PhotoImage(file="./assets/fotos/uranus.gif"))
-pluto=planet("Pluto","Milchstraße",1100,False,True,tkinter.PhotoImage(file="./assets/fotos/pluto.gif"))
-warptorS=planet("Warptor","Milchstraße",1000,True,True,tkinter.PhotoImage(file="./assets/fotos/warp.gif"))
+sonne=planet("Sonne","Milchstraße",0,False,False,tkinter.PhotoImage(file="./fotos/ship.gif"))
+erde=planet("Erde","Milchstraße",250,False,True,tkinter.PhotoImage(file="./fotos/erde.gif"))
+mars=planet("Mars","Milchstraße",370,False,True,tkinter.PhotoImage(file="./fotos/mars.gif"))
+venus=planet("Venus-Raumstation","Milchstraße",100,False,True,tkinter.PhotoImage(file="./fotos/venus.gif"))
+uranus=planet("Uranus-Raumstation","Milchstraße",600,False,True,tkinter.PhotoImage(file="./fotos/uranus.gif"))
+pluto=planet("Pluto","Milchstraße",1100,False,True,tkinter.PhotoImage(file="./fotos/pluto.gif"))
+warptorS=planet("Warptor","Milchstraße",1000,True,True,tkinter.PhotoImage(file="./fotos/warp.gif"))
 # PLANETEN VON ALPHA CENTAURI
-alphacentauria=planet("Alpha Centauri A (Stern)","Alpha Centauri",0,False,False,tkinter.PhotoImage(file="./assets/fotos/ship.gif"))
-alphacentauriab=planet("Alpha Centauri Ab","Alpha Centauri",150,False,True,tkinter.PhotoImage(file="./assets/fotos/ship.gif"))
-alphacentauribb=planet("Alpha Centauri Bb","Alpha Centauri",2580,False,True,tkinter.PhotoImage(file="./assets/fotos/ship.gif"))
-warptorA=planet("Warptor","Alpha Centauri",1000,True,True,tkinter.PhotoImage(file="./assets/fotos/warp.gif"))
+alphacentauria=planet("Alpha Centauri A (Stern)","Alpha Centauri",0,False,False,tkinter.PhotoImage(file="./fotos/ship.gif"))
+alphacentauriab=planet("Alpha Centauri Ab","Alpha Centauri",150,False,True,tkinter.PhotoImage(file="./fotos/ship.gif"))
+alphacentauribb=planet("Alpha Centauri Bb","Alpha Centauri",2580,False,True,tkinter.PhotoImage(file="./fotos/ship.gif"))
+warptorA=planet("Warptor","Alpha Centauri",1000,True,True,tkinter.PhotoImage(file="./fotos/warp.gif"))
 
 sPlaneten= [sonne,erde,mars,venus,uranus,pluto,warptorS] # PLANETEN DES SONNENSYSTEMS
 aPlaneten=[alphacentauria,alphacentauriab,alphacentauribb,warptorA] # PLANETEN UM ALPHA CENTAURI
+planeten=planeten+aPlaneten+sPlaneten
 
+sternsysteme=[]
 class Planetensystem:
     def __init__(self, name, planeten,startplanet):
         self.name=name
@@ -54,7 +58,7 @@ class Planetensystem:
         self.startplanet=startplanet
 sonnensystem=Planetensystem("Sonnensystem",sPlaneten, erde)
 alphacentauri=Planetensystem("Alpha Centauri",aPlaneten, alphacentauria)
-sternsysteme=[sonnensystem,alphacentauri]
+sternsysteme=sternsysteme+[sonnensystem,alphacentauri]
 
 sternsystem=sonnensystem # AKTUELLES STERNSYSTEM
 
@@ -74,6 +78,7 @@ class Objekt:
 
 # Objektdefinition
 #reihenfolge:name,preis,preismax,preismin,geladen,sonnensystem (in welchem das objekt kaufbar ist), verkauflich (ob das Objekt verkauft werden kann), kaufbar(ob das Objekt kaufbar ist)
+objekte=[]
 eisen=Objekt("Eisen",250,1350,100,0,sonnensystem,True,True)
 h2o=Objekt("H2O",750,1700,200,0,sonnensystem,True,True)
 co2=Objekt("CO2",600,2000,200,0,sonnensystem,True,True)
@@ -174,7 +179,7 @@ def NeuesSpiel():
     Laderaum = 100
     treibstoff=100
     global locationImg
-    locationImg=tkinter.PhotoImage(file="./assets/fotos/ship.gif")
+    locationImg=tkinter.PhotoImage(file="./fotos/ship.gif")
     EingabeMenge.delete("0","end")
     EingabeMenge.insert("end","0")
     sternsystem=sonnensystem
@@ -766,7 +771,7 @@ TreibstoffZustand=tkinter.Label(game,text=treibstofftext)
 TreibstoffZustand.grid(row=8,column=2,padx=5, columnspan=2)
 # ---------------------
 global locationImg
-locationImg=tkinter.PhotoImage(file="./assets/fotos/ship.gif")
+locationImg=tkinter.PhotoImage(file="./fotos/ship.gif")
 global fotolabel
 fotolabel=tkinter.Label(image=locationImg)
 fotolabel.grid(row=1,column=0,rowspan=8)
