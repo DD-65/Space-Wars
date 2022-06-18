@@ -8,4 +8,6 @@ The general GUI structrure is based on a [assignment](https://informatik.bildung
 I know that the game could be coded simplier and prettier, but I'm still learning.
 
 ### Installation
-Download the repo as .zip, unpack it and `cd` into the folder. Run the game with `python3 game.py`.
+Download the repo (and move into the new folder) with `git clone https://github.com/DD-65/Space-Wars && cd Space-Wars`.
+Start the game with `python3 game.py`. 
+Much fun playing!
