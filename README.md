@@ -1,5 +1,5 @@
 # Space-Wars
-![alt text](https://img.shields.io/badge/In Development?%3F-yes!-brightgreen) ![alt text](https://img.shields.io/badge/ask%20me-anything-red) ![alt text](https://img.shields.io/badge/version-v1.0-informational)
+![alt text](https://img.shields.io/badge/In_Development?%3F-yes!-brightgreen) ![alt text](https://img.shields.io/badge/ask%20me-anything-red) ![alt text](https://img.shields.io/badge/version-v1.0-informational)
 
 A simple space-themed trading simulator made with tkinter and my first python project.
 
