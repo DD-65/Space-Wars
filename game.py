@@ -417,12 +417,15 @@ def weiterfliegen():
     global Ort
     global Laderaum
 
-    try:
-        warptorfenster.destroy
-    except NameError:
-        pass
+    
 
     alterplanet=Ort
+    # falls man vom warptor wegfliegt, werden die GUI-Elemente wieder eingeblendet und das warp-fenster geschlossen
+    if alterplanet.name=="Warptor":
+        warptorfenster.destroy
+        for object in warptorhide:
+            object.grid()
+    # planetenvariable verändern (= fliegen)
     try:
         Nummer = int(ListeOrte.curselection()[0])
     except IndexError: # FALLS NICHTS AUSGEWÄHLT IST (BEI FLUGZIEL)
@@ -441,6 +444,10 @@ def weiterfliegen():
             elif sternsystem==alphacentauri:
                 Ort=alphacentauriab
     ortname=Ort.name
+    # falls man zu einem warptor geflogen ist, werden die GUI-Elemente versteckt
+    if ortname=="Warptor":
+        for object in warptorhide:
+            object.grid_remove() 
     # TREIBSTOFFVERBRAUCH
     global treibstoff
     treibstoffalt=treibstoff
@@ -612,7 +619,7 @@ def hilfe():
     """
     erklaerung=tkinter.Label(Hilfe,text=hilfetext)
     erklaerung.grid(row=1,column=1)
-
+    #ListeObjekte.grid_remove()
 
 def online():
     global Geld
@@ -719,6 +726,7 @@ def online():
 
 
 #GUI ----------------------------------------
+global ListeObjekte
 ListeObjekte = tkinter.Listbox (width=30, height = 10)
 ListeObjekte.grid(padx = 5, pady = 5, row = 1, column = 1, columnspan = 1, rowspan=4)
 
@@ -775,6 +783,10 @@ locationImg=tkinter.PhotoImage(file="./assets/fotos/ship.gif")
 global fotolabel
 fotolabel=tkinter.Label(image=locationImg)
 fotolabel.grid(row=1,column=0,rowspan=8)
+# ---------------------
+#liste an widgets die versteckt werden sollen falls man zum warptor gelangt
+global warptorhide
+warptorhide=[ListeLaderaum,ListeObjekte,ButtonAlles,ButtonHalfte,ButtonKaufen,ButtonVerkaufen,LabelMenge,buttonplus,buttonminus,EingabeMenge]
 # ---------------------
 def closinglog():
     global Geld
