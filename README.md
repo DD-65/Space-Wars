@@ -1,13 +1,3 @@
 # Space Wars
-![alt text](https://img.shields.io/badge/ask%20me-anything-red) ![alt text](https://img.shields.io/badge/version-v1.0-informational)
-
-Space Wars is a simple space-themed trading simulator made with tkinter and my first python project.
-
-The general GUI structrure is based on a [assignment](https://informatik.bildung-rp.de/fileadmin/user_upload/informatik.bildung-rp.de/Fortbildung/FB_SpieleProgrammieren/SPIELE-171017-Jakobs_Modul1SpiceWars.pdf) from the German ministry of Education, but i've changed both the GUI and the gameplay a lot since what's provided by the assignment.
-
-I know that the game could be coded simplier and prettier, but I'm still learning.
-
-### Installation
-Download the repo (and move into the new folder) with `git clone https://github.com/DD-65/Space-Wars && cd Space-Wars`.
-Start the game with `python3 game.py`. 
-Much fun playing!
+## Branch readability-rework
+In this branch I'm coding the game entirely new in multiple files so that adding content and readability is simpler. This may take a while as I'm not really coding that regularly, but it'll be fun once it's done!
