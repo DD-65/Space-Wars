@@ -1,31 +1,18 @@
-import csv
-from datetime import datetime
+import json
+from models import Planet, Item
 
-def write_closing_log(Geld, reisen, log_file="logs.txt"):
-    with open(log_file, "a+") as logs:
-        zeit = datetime.now()
-        ts = zeit.strftime("%d.%m;%H:%M")
-        writetext = (
-            "BEENDEN\n"
-            "TS: " + ts + "\n" +
-            "Geld: " + str(Geld) + ", Reisen: " + str(reisen) +
-            "\n---------------\n"
-        )
-        logs.write(writetext)
+def load_planets(filepath="planets.json"):
+    with open(filepath, "r", encoding="utf-8") as file:
+        planets_data = json.load(file)
+    return [Planet(**planet) for planet in planets_data]
 
-def upload_score(score, username, score_file="score.csv"):
-    daten = []
-    kategorien = ["Benutzername", "Score"]
-    try:
-        with open(score_file, "r") as p:
-            reader = csv.reader(p)
-            kategorien = next(reader)
-            for row in reader:
-                daten.append(row)
-    except FileNotFoundError:
-        pass
-    daten.append([username, score])
-    with open(score_file, "w", newline='') as p:
-        writer = csv.writer(p)
-        writer.writerow(kategorien)
-        writer.writerows(daten)
+def load_items(filepath="items.json"):
+    with open(filepath, "r", encoding="utf-8") as file:
+        items_data = json.load(file)
+    return [Item(**item) for item in items_data]
+
+def find_planet(planets, planet_name):
+    for planet in planets:
+        if planet.name == planet_name:
+            return planet
+    return None

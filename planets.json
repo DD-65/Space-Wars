@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Sonne",
+    "system": "Milchstraße",
+    "warp_gate": false,
+    "coords": [0, 0],
+    "bereisbar": false,
+    "foto_path": "./assets/fotos/ship.gif"
+  },
+  {
+    "name": "Erde",
+    "system": "Milchstraße",
+    "warp_gate": false,
+    "coords": [250, 0],
+    "bereisbar": true,
+    "foto_path": "./assets/fotos/erde.gif"
+  },
+  {
+    "name": "Mars",
+    "system": "Milchstraße",
+    "warp_gate": false,
+    "coords": [370, 0],
+    "bereisbar": true,
+    "foto_path": "./assets/fotos/mars.gif"
+  },
+  {
+    "name": "Venus-Raumstation",
+    "system": "Milchstraße",
+    "warp_gate": false,
+    "coords": [100, 0],
+    "bereisbar": true,
+    "foto_path": "./assets/fotos/venus.gif"
+  },
+  {
+    "name": "Uranus-Raumstation",
+    "system": "Milchstraße",
+    "warp_gate": false,
+    "coords": [1100, 0],
+    "bereisbar": true,
+    "foto_path": "./assets/fotos/uranus.gif"
+  },
+  {
+    "name": "Pluto",
+    "system": "Milchstraße",
+    "warp_gate": false,
+    "coords": [1100, 0],
+    "bereisbar": true,
+    "foto_path": "./assets/fotos/pluto.gif"
+  },
+  {
+    "name": "Warptor",
+    "system": "Milchstraße",
+    "warp_gate": true,
+    "coords": [1000, 0],
+    "bereisbar": true,
+    "foto_path": "./assets/fotos/warp.gif"
+  }
+]

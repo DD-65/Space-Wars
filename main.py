@@ -1,11 +1,10 @@
 import tkinter as tk
-from gui import setup_gui
+from gui import GameGUI
 
 def main():
-    game = tk.Tk()
-    game.title("Space Wars")
-    setup_gui(game)
-    game.mainloop()
+    root = tk.Tk()
+    app = GameGUI(root)
+    root.mainloop()
 
 if __name__ == "__main__":
     main()

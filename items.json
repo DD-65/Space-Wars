@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Wasser",
+    "base_price": 50,
+    "price_max": 100,
+    "price_min": 25,
+    "loaded": false,
+    "default_system": "Sonnensystem",
+    "sellable": true,
+    "buyable": true
+  },
+  {
+    "name": "Metalle",
+    "base_price": 200,
+    "price_max": 400,
+    "price_min": 150,
+    "loaded": false,
+    "default_system": "Alpha Centauri",
+    "sellable": true,
+    "buyable": true
+  },
+  {
+    "name": "Technologie",
+    "base_price": 500,
+    "price_max": 1000,
+    "price_min": 300,
+    "loaded": false,
+    "default_system": "Alpha Centauri",
+    "sellable": true,
+    "buyable": true
+  },
+  {
+    "name": "Treibstoff",
+    "base_price": 3500,
+    "price_max": 3500,
+    "price_min": 3500,
+    "loaded": false,
+    "default_system": "all",
+    "sellable": false,
+    "buyable": true
+  },
+  {
+    "name": "Tank-Upgrade",
+    "base_price": 100000,
+    "price_max": 100000,
+    "price_min": 100000,
+    "loaded": false,
+    "default_system": "all",
+    "sellable": false,
+    "buyable": true
+  }
+]
