@@ -1,5 +1,4 @@
 # Space Wars
-![alt text](https://img.shields.io/badge/ask%20me-anything-red) ![alt text](https://img.shields.io/badge/version-v1.0-informational)
 
 Space Wars is a simple space-themed trading simulator made with tkinter and my first python project.
 
