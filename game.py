@@ -537,10 +537,13 @@ def weiterfliegen():
         for i in range(0,len(benutzbareobjekte)):
             chance=randint(1,100)
             if chance>50: # DAMIT NUR BEI CA. DER HÄLFTE DER MATERIALIEN ETWAS GESTOHLEN WIRD
-                benutzbareobjekte[i].geladen=benutzbareobjekte[i].geladen//2
+                diebstahlmenge=benutzbareobjekte[i].geladen//2
+                benutzbareobjekte[i].geladen-=diebstahlmenge
+                Laderaum=Laderaum+diebstahlmenge
+                
         Geld=Geld//2
 
-    # ALIENANGRIFF!!! Ne spaß, sie bemerken dich nicht mal. Also wirklich!
+    # ALIENANGRIFF!!! Nein, sie bemerken dich nicht mal. Also wirklich!
     elif alien==True and sternsystem==alphacentauri and nichtanzeigen==False:
         if zur==True:
             tkinter.messagebox.showinfo("- A L A R M -","Auf dem Weg zur " + ortname + " begegnet dir ein vollkommen unbekanntes Raumschiff!\n Wer sind sie? Was wollen sie? All diese Fragen..\nDoch leider fliegen sie einfach vorbei.. Vielleicht triffst du sie ja nochmal.")
